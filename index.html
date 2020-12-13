@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js'></script>
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>use vue to make a slideshow</title>
+</head>
+<body>
+    <div id="app">
+        <span>{{myName}}</span>
+        <div class="slideshow-container">
+            <div v-show="idx == slideIndex" v-for="(src,idx) in myImgs" :key="src" class="mySlides fade">
+                <div class="numbertext">{{ idx+1 }}/5</div>
+                <img :src="src" alt="">
+                <div class="text">Caption {{ idx+1 }}</div>
+            </div>
+            <!-- Next and previous buttons -->
+            <span class="prev" @click="changeSlide(slideIndex-1);keepStop()">&#10094;</span>
+            <span class="next" @click="changeSlide(slideIndex+1)">&#10095;</span>
+        </div>
+
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            <span v-for="(src,idx) in myImgs" :key="src" class="dot" :class="{active: idx == slideIndex}" @click="changeSlide(idx)"></span>
+        </div>
+    </div>
+</body>
+
+</html>
